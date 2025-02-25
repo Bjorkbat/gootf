@@ -3,7 +3,7 @@ package opentype
 import (
 	"io"
 
-	"github.com/speedata/gootf/cff"
+	"github.com/Bjorkbat/gootf/cff"
 )
 
 // Flags for compound glyphs. From Go sfnt source code

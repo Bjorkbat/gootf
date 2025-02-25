@@ -13,7 +13,7 @@ import (
 	"strings"
 	"unicode/utf16"
 
-	"github.com/speedata/gootf/cff"
+	"github.com/Bjorkbat/gootf/cff"
 )
 
 func (tt *Font) String() string {
