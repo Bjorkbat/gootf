@@ -1,3 +1,3 @@
-module github.com/speedata/gootf
+module github.com/Bjorkbat/gootf
 
 go 1.16
