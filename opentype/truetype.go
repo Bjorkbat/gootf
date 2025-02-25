@@ -222,7 +222,7 @@ func (tt *Font) readName(offset int64) error {
 		}
 		for _, ne := range names {
 			tt.r.Seek(ne.offset+int64(stringOffset)+offset, io.SeekStart)
-			if _, ok := tt.names[int(ne.nameID)]; ok {
+			if _, ok := tt.Names[int(ne.nameID)]; ok {
 				continue
 			}
 			if ne.platformID == 3 && ne.encodingID == 1 {
@@ -237,17 +237,17 @@ func (tt *Font) readName(offset int64) error {
 					tt.read(&char)
 					dec = append(dec, char)
 				}
-				tt.names[int(ne.nameID)] = string(utf16.Decode(dec))
+				tt.Names[int(ne.nameID)] = string(utf16.Decode(dec))
 			} else {
 				buf := make([]byte, ne.length)
 				tt.r.Read(buf)
-				tt.names[int(ne.nameID)] = string(buf)
+				tt.Names[int(ne.nameID)] = string(buf)
 			}
 		}
 	default:
 		panic("not implemented yet: name version != 0")
 	}
-	tt.FontName = tt.names[6]
+	tt.FontName = tt.Names[6]
 	return nil
 }
 
@@ -897,7 +897,7 @@ func Open(r io.ReadSeeker, fontindex int) (*Font, error) {
 	tt.fontindex = fontindex
 	tt.tables = make(map[string]tableOffsetLength)
 	tt.tablesRead = make(map[string]bool)
-	tt.names = make(map[int]string)
+	tt.Names = make(map[int]string)
 	// to mark that the Head table is not read yet
 	tt.Head.IndexToLocFormat = -1
 	tt.read(&tt.sfntVersion)

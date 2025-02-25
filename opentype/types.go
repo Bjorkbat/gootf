@@ -46,7 +46,7 @@ type Font struct {
 	tables              map[string]tableOffsetLength
 	tablesRead          map[string]bool // list of tables that have been read
 	GlyphNames          []string
-	names               map[int]string
+	Names               map[int]string
 	FontName            string // PostScript name for the font. Set after names table has been read or within a CFF font
 	glyphOffsets        []uint32
 	advanceWidth        []uint16
